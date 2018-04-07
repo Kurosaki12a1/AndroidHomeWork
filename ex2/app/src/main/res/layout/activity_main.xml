@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:text="Value to convert" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+
+            android:layout_below="@+id/Title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Spinner
+            android:id="@+id/fromSpinner"
+            android:layout_width="280dp"
+            android:layout_height="20dp"
+            android:layout_alignStart="@+id/editText"
+            android:layout_alignTop="@+id/editText"
+            android:layout_marginTop="65dp" />
+
+        <TextView
+            android:id="@+id/From"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/fromSpinner"
+            android:layout_below="@+id/editText"
+            android:layout_marginLeft="10dp"
+            android:text="FROM"
+            android:gravity="center"/>
+
+        <Spinner
+            android:id="@+id/toSpinner"
+            android:layout_width="280dp"
+            android:layout_height="20dp"
+            android:layout_alignStart="@+id/fromSpinner"
+            android:layout_alignTop="@+id/To" />
+
+        <TextView
+            android:id="@+id/To"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_alignStart="@+id/From"
+            android:layout_below="@+id/From"
+            android:layout_marginTop="21dp"
+            android:text="TO"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/Clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:text="Clear" />
+
+        <Button
+            android:id="@+id/Calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:text="Calculate" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relLayout1">
+
+        <EditText
+            android:id="@+id/EditTextAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:inputType="text"
+            android:gravity="center"
+            android:text="@null"
+        />
+
+        <TextView
+            android:id="@+id/Answer"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="ANSWER"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/detail1"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/detail2"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:gravity="center"
+            android:text="@null" />
+
+        <TextView
+            android:id="@+id/detail2"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/detail1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="@null" />
+    </RelativeLayout>
+</RelativeLayout>
