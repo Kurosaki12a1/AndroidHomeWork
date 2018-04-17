@@ -1,6 +1,10 @@
 package com.bku.ex2;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,6 +49,29 @@ public class MainActivity extends AppCompatActivity {
             "Đôla Canada (CAD)",
             "Đôla Hồng Kông (HKD)",
             "Đôla Mỹ (USD)"
+
+    };
+    String arr1[]={
+            "THB",
+            "GBP",
+            "SGD",
+            "AUD",
+            "EUR",
+            "LAK",
+            "CNY",
+            "PHP",
+            "KHR",
+            "MYR",
+            "INR",
+            "IDR",
+            "RUB",
+            "TWD",
+            "VND",
+            "KRW",
+            "JPY",
+            "CAD",
+            "HKD",
+            "USD"
 
     };
 
@@ -96,8 +123,18 @@ public class MainActivity extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                new getRatio().execute();
+                if (isOnline()) {
+                    new getRatio().execute();
+                }
+                else
+                {
+                    SharedPreferences sharedPreferences=getSharedPreferences("ratio_save",MODE_PRIVATE);
+                    for(int i=0;i<20;i++){
+                        ratio=new ArrayList<>();
+                        ratio.add(sharedPreferences.getString(arr1[i],"1"));
+                        exchange(fromSpin.getSelectedItemPosition(),toSpin.getSelectedItemPosition());
+                    }
+                }
             }
         });
     }
@@ -204,7 +241,12 @@ public class MainActivity extends AppCompatActivity {
                     ratio.add(Rate.getString("CAD"));
                     ratio.add(Rate.getString("HKD"));
                     ratio.add(Rate.getString("USD"));
-
+                    SharedPreferences sharedPreferences=getSharedPreferences("ratio_save", MODE_PRIVATE);
+                    SharedPreferences.Editor edit=sharedPreferences.edit();
+                    for(int i=0;i<20;i++){
+                        edit.putString(arr1[i],ratio.get(i).toString());
+                    }
+                    edit.apply();
                 }
                 catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
@@ -235,6 +277,12 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
             exchange(fromSpin.getSelectedItemPosition(),toSpin.getSelectedItemPosition());
         }
+    }
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
 }
